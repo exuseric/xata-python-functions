@@ -4,11 +4,13 @@ import csv
 
 xata = XataClient()
 
+# Replace with your way to get filenames
 country:str = input('Which Country, (kenya, uganda, rwanda): ')
 record:str = ''
-# Replace "data.csv" with the actual path to your CSV file
 df = pd.read_csv(f"./records/{country}_branches.csv")
-data = []
+
+# Large dataset
+data:list = []
 
 # Access data by column name
 for index, row in df.iterrows():
@@ -23,13 +25,6 @@ for index, row in df.iterrows():
         "county": county,
         "url": url
     })
-  
-# resp = xata.records().insert("kenya_branches", {
-#     "sku": sku,
-#     "branch": branch,
-#     "county": county,
-#     "url": url
-# })
 
 def process_data_chunks(data, chunk_size, api_call_function):
   """
